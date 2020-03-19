@@ -1,0 +1,74 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+
+  <title>manage kids goals</title>
+  <link href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" rel="stylesheet">
+  <meta name="description" content="The HTML5 Herald">
+  <meta name="author" content="SitePoint">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style type="text/css">
+	body{
+		font-family: 'Montserrat', sans-serif;
+		background: linear-gradient(45deg, #FC466B 0%, #3F5EFB 100%);
+	}
+
+	#wrapper{
+		position: relative;
+		width:100%;
+		height: 100vh;
+	}
+
+	#main{		
+		color: #ffffff;
+		position: absolute;
+  		top: 50%; 
+  		left: 50%;
+  		transform: translate(-50%,-50%);
+  		text-align: center;
+	}
+
+	.add, .extract{
+		font-size: 72px;
+		padding:15px;
+	}
+	
+</style>
+
+<script src="https://kit.fontawesome.com/35f7aef1c0.js" crossorigin="anonymous"></script>
+
+</head>
+
+<body>
+  
+  <div id="wrapper">
+  	<div id="main">
+  		<div class="add" onclick="addScore('1', 'rotem', 'mobile')"><i class="far fa-plus-circle"></i></div>
+  		<div class="extract" onclick="addScore('-1', 'rotem', 'mobile')"><i class="far fa-minus-circle"></i></div>
+  	</div>
+  </div>
+
+<script type="text/javascript">
+	function addScore (amount, kid, category) {
+    const URI = 'https://datawaves.io/api/v1.0/projects/bppnu7223akg0274c7dg/score'
+    fetch(URI, {
+        method: "post",
+        headers: {
+            Authorization: '09c166a6875c4rrWhvbVrJSWfWK1VcLi4b859e3b607cd090dd0c',
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+            kid, amount, category
+        })
+    })
+    .then( (httpResponse) => {
+        console.log("Sent data to datawaves. response ok:" + httpResponse.ok)
+    })
+}
+</script>
+
+</body>
+</html>

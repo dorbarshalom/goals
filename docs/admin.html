@@ -53,21 +53,21 @@
 
 <script type="text/javascript">
 	function addScore (amount, kid, category) {
-    const URI = 'https://datawaves.io/api/v1.0/projects/bppnu7223akg0274c7dg/score'
-    fetch(URI, {
-        method: "post",
-        headers: {
-            Authorization: '09c166a6875c4rrWhvbVrJSWfWK1VcLi4b859e3b607cd090dd0c',
-            "Content-Type": "application/json"
-        },
-        body: JSON.stringify({
-            kid, amount, category
-        })
-    })
-    .then( (httpResponse) => {
-        console.log("Sent data to datawaves. response ok:" + httpResponse.ok)
-    })
-}
+	    const URI = 'https://datawaves.io/api/v1.0/projects/bppnu7223akg0274c7dg/score'
+	    fetch(URI, {
+	        method: "post",
+	        headers: {
+	            Authorization: '09c166a6875c4rrWhvbVrJSWfWK1VcLi4b859e3b607cd090dd0c',
+	            "Content-Type": "application/json"
+	        },
+	        body: JSON.stringify({
+	            kid, amount, category
+	        })
+	    })
+	    .then( (httpResponse) => {
+	        console.log("Sent data to datawaves. response ok:" + httpResponse.ok)
+	    })
+	}
 </script>
 
 </body>

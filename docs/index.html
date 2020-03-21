@@ -6,7 +6,7 @@
 
   <title>set your kids goals</title>
   <link href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" rel="stylesheet">
-  <meta name="description" content="The HTML5 Herald">
+  <meta name="description" content="goalster">
   <meta name="author" content="SitePoint">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -48,7 +48,6 @@
   	<div id="main">
   		<div class="name">rotem bar shalom</div>
   		<div id="score">72</div>
-  		
   	</div>
   </div>
 
@@ -69,7 +68,7 @@
 
 	fetch("https://datawaves.io/api/v1.0/projects/bppnu7223akg0274c7dg/queries/goals/sum", requestOptions)
 	  	.then(response => response.json())
-		.then(json => { document.querySelector("#score").value = json.result[0].sum })
+		.then(json => { document.querySelector("#score").innerText = json.result[0].sum })
 	  	.catch(error => console.log('error', error));
 </script>
 

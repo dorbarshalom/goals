@@ -38,6 +38,14 @@
 		font-size: 72px;
 		padding:15px;
 	}
+	#increment input{
+		font-size:32px;
+		font-family: 'Montserrat', sans-serif;
+		width:50px;
+		border:none;
+		border-radius: 4px;
+		text-align: center;
+	}
 	
 </style>
 
@@ -49,8 +57,12 @@
   
   <div id="wrapper">
   	<div id="main">
-  		<div class="add" onclick="addScore(1, 'rotem', 'mobile')"><i class="far fa-plus-circle"></i></div>
+  		<div class="add" onclick="addScore(document.getElementById('scoreIncrement').value, 'rotem', 'mobile')"><i class="far fa-plus-circle"></i></div>
   		<div class="extract" onclick="addScore(-1, 'rotem', 'mobile')"><i class="far fa-minus-circle"></i></div>
+  		<div id="increment">
+  			<input type="increment" name="scoreIncrement" id="scoreIncrement" value="1">
+  			<a class="checker" href="javascript:void(0)" onclick="console.log(document.getElementById('scoreIncrement').value)">check increment</a>
+  		</div>
   	</div>
   </div>
 
@@ -73,6 +85,8 @@
 	        console.log("Sent data to datawaves. response ok:" + httpResponse.ok)
 	    })
 	}
+
+	var increment = document.getElementById('scoreIncrement').value;
 </script>
 
 </body>

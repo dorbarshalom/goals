@@ -38,6 +38,14 @@
 		font-size: 160px;
 		font-weight: 900;	
 	}
+	#increment input{
+		font-size:32px;
+		font-family: 'Montserrat', sans-serif;
+		width:50px;
+		border:none;
+		border-radius: 4px;
+		text-align: center;
+	}
 </style>
 
 </head>
@@ -48,6 +56,10 @@
   	<div id="main">
   		<div class="name">rotem bar shalom</div>
   		<div id="score"></div>
+  		<div id="increment">
+  			<input type="increment" name="scoreIncrement" id="scoreIncrement">
+  			<a class="checker" href="#" onclick="console.log(document.getElementById('#scoreIncrement').value)">check increment</a>
+  		</div>
   	</div>
   </div>
 

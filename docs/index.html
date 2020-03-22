@@ -14,11 +14,13 @@
 	body{
 		font-family: 'Montserrat', sans-serif;
 		background: linear-gradient(45deg, #FC466B 0%, #3F5EFB 100%);
+		color:#FFFFFF;
+		margin:0;
 	}
 
 	#wrapper{
 		position: relative;
-		width:100%;
+		width:100vw;
 		height: 100vh;
 	}
 
@@ -31,14 +33,56 @@
   		text-align: center;
 	}
 
-	.name{
-		font-size: 24px;
+	#name{
+		font-size: 18px;
+		font-weight: 400;
+		position: absolute;
+		top:30px;
+		left:30px;
 	}
 	#score{
 		font-size: 160px;
-		font-weight: 900;	
+		font-weight: 900;
+		line-height: 100%;
 	}
-	
+	#target{
+		font-size: 32px;
+		float:right;
+		clear: both;
+	}
+	#goal_title{
+		text-align: left;
+		position: absolute;
+		bottom:30px;
+		left:30px;
+	}
+	#goal_title span{
+		font-size: 18px;
+		font-weight: 400;
+	}
+	#goal_title div{
+		clear:both;
+		font-size: 32px;
+		font-weight: 900;
+		width:70%;
+	}
+	#progress{
+		position: absolute;
+		right:30px;
+		top:30px;
+		height:calc(100vh - 60px);
+		width:16px;
+		border-radius: 999px;
+		background:rgba(255,255,255,0.15);
+	}
+	#achieved{
+		position:absolute;
+		width:100%;
+		height:35%;
+		background: rgba(255,255,255,0.8);
+		bottom: 0;
+		border-radius: 999px;
+	}
 </style>
 
 </head>
@@ -46,10 +90,21 @@
 <body>
   
   <div id="wrapper">
-  	<div id="main">
-  		<div class="name">rotem bar shalom</div>
-  		<div id="score"></div>
+
+  	<div id="progress">
+  		<div id="achieved"></div>
   	</div>
+
+  	<div id="goal_title">
+  		<span>Goal:</span>
+  		<div>New Xiaomi A3 64GB</div>
+  	</div>
+
+  	<div id="main">
+  		<div id="score"></div>
+  		<div id="target">/ 250</div>
+  	</div>
+  	<div id="name">Rotem Bar Shalom</div>
   </div>
 
 <script type="text/javascript">

@@ -70,10 +70,10 @@
 		position: absolute;
 		right:30px;
 		top:30px;
-		height:calc(100vh - 60px);
 		width:16px;
 		border-radius: 999px;
 		background:rgba(255,255,255,0.15);
+		height: calc(var(--vh, 1vh) * 100 - 60px);
 	}
 	#achieved{
 		position:absolute;
@@ -88,8 +88,6 @@
 </head>
 
 <body>
-  
-  <div id="wrapper">
 
   	<div id="progress">
   		<div id="achieved"></div>
@@ -105,7 +103,6 @@
   		<div id="target">/ 250</div>
   	</div>
   	<div id="name">Rotem Bar Shalom</div>
-  </div>
 
 <script type="text/javascript">
 	var myHeaders = new Headers();
@@ -126,6 +123,13 @@
 	  	.then(response => response.json())
 		.then(json => { document.querySelector("#score").innerText = json.result[0].sum })
 	  	.catch(error => console.log('error', error));
+
+	// set the proper height for the progress bar
+	// First we get the viewport height and we multiple it by 1% to get a value for a vh unit
+	let vh = window.innerHeight * 0.01;
+	// Then we set the value in the --vh custom property to the root of the document
+	document.documentElement.style.setProperty('--vh', `${vh}px`);
+
 </script>
 
 </body>

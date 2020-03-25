@@ -32,7 +32,18 @@
 		font-size: 72px;
 		display: inline-block;
 		width:100%;
-		padding-bottom: 20px;
+	}
+	.main{
+		border-radius: 8px;
+		color: #ffffff;
+  		text-align: center;
+  		padding:15px;
+	}
+	.kid.first .main{
+		background: linear-gradient(45deg, #FC466B 0%, #3F5EFB 100%);
+	}
+	.kid.second .main{
+		background: linear-gradient(45deg, #69D200 0%, #F3DC0B 100%);
 	}
 	.change_score > div{
 		text-align: center;
@@ -40,11 +51,11 @@
 		float: left;
 	}
 	.kid{
-		background: linear-gradient(45deg, #FC466B 0%, #3F5EFB 100%);
-		border-radius: 8px;
-		color: #ffffff;
-  		text-align: center;
   		padding-top: 30px;
+	}
+
+	.kid_name{
+		font-size: 32px;
 	}
 	
 	h1{
@@ -56,7 +67,6 @@
 	.info{
 		text-align: left;
 		padding:20px 30px;
-		background: rgba(0,0,0,0.5);
 		display: inline-block;
 		width:100%;
 		box-sizing: border-box;
@@ -91,36 +101,60 @@
 
 	<h1>Manage kids score</h1>
 
- 	<div class="kid first">
- 		<div class="kid_name">Rotem</div>
+	<!-- kid #1 -->
 
- 		<div class="change_score">
- 			<div class="minus" onclick="addScore(-1, 'rotem', 'mobile')"><i class="far fa-minus-circle"></i></div>
- 			
- 			<div class="increment">1</div>
- 			
- 			<div class="plus" onclick="addScore(document.getElementById('scoreIncrement').value, 'rotem', 'mobile')"><i class="far fa-plus-circle"></i></div>
+ 	<div class="kid first">
+ 		
+ 		<div class="main">
+ 			<div class="kid_name">Rotem</div>
+	 		<div class="change_score">
+
+	 			<div class="minus" onclick="addScore(-1, 'rotem', 'mobile')"><i class="far fa-minus-circle"></i></div>
+	 			
+	 			<div class="increment">1</div>
+	 			
+	 			<div class="plus" onclick="addScore(document.getElementById('scoreIncrement').value, 'rotem', 'mobile')"><i class="far fa-plus-circle"></i></div>
+	 		</div>
  		</div>
  		<div class="info">
 			<div class="score_status">
- 				<div class="label">
- 					Score
- 				</div>
- 				<div class="score">
- 					76
- 					<sup>/ 250</sup>
- 				</div>
+ 				<div class="label">Score</div>
+ 				<div class="score">76<sup>/ 250</sup></div>
 			</div>
 			<div class="reward">
- 				<div class="label">
- 					Reward
- 				</div>
- 				<div>
- 					New Xiaomi A3 64GB
- 				</div>
+ 				<div class="label">Reward</div>
+ 				<div>New Xiaomi A3 64GB</div>
 			</div>
 		</div>
  	</div>
+
+ 	<!-- kid #2 -->
+
+ 	<div class="kid second">
+ 		
+ 		<div class="main">
+ 			<div class="kid_name">Lior</div>
+	 		<div class="change_score">
+
+	 			<div class="minus" onclick="addScore(-1, 'rotem', 'mobile')"><i class="far fa-minus-circle"></i></div>
+	 			
+	 			<div class="increment">1</div>
+	 			
+	 			<div class="plus" onclick="addScore(document.getElementById('scoreIncrement').value, 'rotem', 'mobile')"><i class="far fa-plus-circle"></i></div>
+	 		</div>
+ 		</div>
+ 		<div class="info">
+			<div class="score_status">
+ 				<div class="label">Score</div>
+ 				<div class="score">76<sup>/ 250</sup></div>
+			</div>
+			<div class="reward">
+ 				<div class="label">Reward</div>
+ 				<div>New Xiaomi A3 64GB</div>
+			</div>
+		</div>
+ 	</div>
+
 
 
   	

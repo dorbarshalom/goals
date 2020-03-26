@@ -109,14 +109,14 @@
  			<div class="kid_name">Rotem</div>
 	 		<div class="change_score">
 
-	 			<div class="minus" onclick="addScore(-1, 'rotem', 'mobile')"><i class="far fa-minus-circle"></i></div>
+	 			<!-- <div class="minus" onclick="updateScore(-1, 'rotem', 'mobile')"><i class="far fa-minus-circle"></i></div> -->
 	 			
-	 			<div class="increment">1</div>
+	 			<div class="increment">1.1</div>
 	 			
-	 			<div class="plus" onclick="addScore(document.getElementById('scoreIncrement').value, 'rotem', 'mobile')"><i class="far fa-plus-circle"></i></div>
+	 			<div class="plus" onclick="addIncrement('rotem', 'mobile')"><i class="far fa-plus-circle"></i></div>
 	 		</div>
  		</div>
- 		<div class="info">
+ 		<!-- <div class="info">
 			<div class="score_status">
  				<div class="label">Score</div>
  				<div class="score">76<sup>/ 250</sup></div>
@@ -125,22 +125,22 @@
  				<div class="label">Reward</div>
  				<div>New Xiaomi A3 64GB</div>
 			</div>
-		</div>
+		</div> -->
  	</div>
 
  	<!-- kid #2 -->
 
- 	<div class="kid second">
+ 	<!-- <div class="kid second">
  		
  		<div class="main">
  			<div class="kid_name">Lior</div>
 	 		<div class="change_score">
 
-	 			<div class="minus" onclick="addScore(-1, 'rotem', 'mobile')"><i class="far fa-minus-circle"></i></div>
+	 			<div class="minus" onclick="updateScore(-1, 'rotem', 'mobile')"><i class="far fa-minus-circle"></i></div>
 	 			
 	 			<div class="increment">1</div>
 	 			
-	 			<div class="plus" onclick="addScore(document.getElementById('scoreIncrement').value, 'rotem', 'mobile')"><i class="far fa-plus-circle"></i></div>
+	 			<div class="plus" onclick="updateScore(document.getElementById('scoreIncrement').value, 'rotem', 'mobile')"><i class="far fa-plus-circle"></i></div>
 	 		</div>
  		</div>
  		<div class="info">
@@ -153,7 +153,7 @@
  				<div>New Xiaomi A3 64GB</div>
 			</div>
 		</div>
- 	</div>
+ 	</div> -->
 
 
 
@@ -168,7 +168,12 @@
  </div>
 
 <script type="text/javascript">
-	function addScore (amount, kid, category) {
+
+	function addIncrement(kid,category){
+		updateScore(document.getElementById('scoreIncrement').value, kid, category);
+	}
+
+	function updateScore (amount, kid, category) {
 	    // const URI = 'https://datawaves.io/api/v1.0/projects/bppnu7223akg0274c7dg/events/score'
 	    const URI = 'https://goals-i9rlmguq9ba8.runkit.sh/'
 	    fetch(URI, {

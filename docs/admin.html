@@ -89,6 +89,45 @@
 		opacity: 0.5;
 		font-weight: 400;
 	}
+	.select_increment ul{
+		width:70%;
+		position: relative;
+		background:rgba(0,0,0,0.2 );
+		display: inline-block;
+		margin: 20px 0 0 0;
+		padding: 0;
+		border-radius: 4px;
+	}
+	.select_increment li{
+		width: 25%;
+		list-style: none;
+		float: left;
+		text-align: center;
+	}
+	
+	.select_increment input{
+		visibility:hidden;
+		margin: 0;
+		float: left;
+	}
+	.select_increment label {
+    	cursor: pointer;
+    	display: block;
+    	padding: 15px 0;
+	}
+	.select_increment input:checked + label {
+    	background: rgba(0,0,0,0.6);
+	}
+
+	.select_increment input.first + label{
+		border-radius: 6px 0 0 6px;
+	}
+
+	.select_increment input.last + label{
+		border-radius: 0 6px 6px 0;
+	}
+
+
 </style>
 
 <script src="https://kit.fontawesome.com/35f7aef1c0.js" crossorigin="anonymous"></script>
@@ -109,38 +148,36 @@
  			<div class="kid_name">Rotem</div>
 	 		<div class="change_score">
 
-	 			<!-- <div class="minus" onclick="updateScore(-1, 'rotem', 'mobile')"><i class="far fa-minus-circle"></i></div> -->
+	 			<div class="minus" onclick="increment(-1, 'rotem', 'mobile')">
+	 				<!-- <i class="far fa-minus-circle"></i> -->
+	 			</div>
 	 			
-	 			<div class="increment">1.2</div>
+	 			<div class="increment">222</div>
 	 			
-	 			<div class="plus" onclick="addIncrement('rotem', 'mobile')"><i class="far fa-plus-circle"></i></div>
+	 			<div class="plus" onclick="increment(1, 'rotem', 'mobile')">
+	 				<!-- <i class="far fa-plus-circle"></i> -->
+	 			</div>
 	 		</div>
- 		</div>
- 		<!-- <div class="info">
-			<div class="score_status">
- 				<div class="label">Score</div>
- 				<div class="score">76<sup>/ 250</sup></div>
-			</div>
-			<div class="reward">
- 				<div class="label">Reward</div>
- 				<div>New Xiaomi A3 64GB</div>
-			</div>
-		</div> -->
- 	</div>
+	 		<div class="select_increment">
 
- 	<!-- kid #2 -->
-
- 	<!-- <div class="kid second">
- 		
- 		<div class="main">
- 			<div class="kid_name">Lior</div>
-	 		<div class="change_score">
-
-	 			<div class="minus" onclick="updateScore(-1, 'rotem', 'mobile')"><i class="far fa-minus-circle"></i></div>
-	 			
-	 			<div class="increment">1</div>
-	 			
-	 			<div class="plus" onclick="updateScore(document.getElementById('scoreIncrement').value, 'rotem', 'mobile')"><i class="far fa-plus-circle"></i></div>
+	 			<ul>
+	 				<li>
+	 					<input type="radio" id="one" name="inc" value="1" checked class="first" onclick="updateIncrement(1)">
+						<label for="one">1</label>
+	 				</li>
+	 				<li>
+	 					<input type="radio" id="two" name="inc" value="2" onclick="updateIncrement(2)">
+						<label for="two">2</label>
+	 				</li>
+	 				<li>
+						<input type="radio" id="five" name="inc" value="5" onclick="updateIncrement(5)">
+						<label for="five">5</label>
+	 				</li>
+	 				<li>
+	 					<input type="radio" id="ten" name="inc" value="10" class="last" onclick="updateIncrement(10)">
+						<label for="ten">10</label>
+	 				</li>
+	 			</ul>
 	 		</div>
  		</div>
  		<div class="info">
@@ -153,24 +190,20 @@
  				<div>New Xiaomi A3 64GB</div>
 			</div>
 		</div>
- 	</div> -->
+ 	</div>
 
-
-
-  	
+ 	
   		
-  		
-  		<div id="increment">
-  			<input type="number" pattern="[0-9]*" inputmode="numeric" name="scoreIncrement" id="scoreIncrement" value="1">
-  			<a class="checker" href="javascript:void(0)" onclick="console.log(document.getElementById('scoreIncrement').value)">check increment</a>
-  		</div>
+  		<!-- <div id="increment">
+  			<input type="number" pattern="[0-9]+" inputmode="numeric" name="scoreIncrement" id="scoreIncrement" value="1">
+  		</div> -->
   	
  </div>
 
 <script type="text/javascript">
 
-	function addIncrement(kid,category){
-		updateScore(document.getElementById('scoreIncrement').value, kid, category);
+	function increment(updown,kid,category){
+		updateScore(updown*parseInt(document.getElementById('scoreIncrement').value), kid, category);
 	}
 
 	function updateScore (amount, kid, category) {
@@ -192,7 +225,13 @@
 	    })
 	}
 
-	var increment = document.getElementById('scoreIncrement').value;
+	//var increment = document.getElementById('scoreIncrement').value;
+
+	function updateIncrement(inc){
+		 document.querySelector(".minus").innerHTML = -1*inc;
+		  document.querySelector(".plus").innerHTML = inc;
+	};
+
 </script>
 
 </body>

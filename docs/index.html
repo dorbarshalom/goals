@@ -1,138 +1,126 @@
 <!doctype html>
 
 <html lang="en">
+
 <head>
-  <meta charset="utf-8">
+    <meta charset="utf-8">
 
-  <title>set your kids goals</title>
-  <link href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" rel="stylesheet">
-  <meta name="description" content="goalster">
-  <meta name="author" content="SitePoint">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>set your kids goals</title>
+    <link href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" rel="stylesheet">
+    <meta name="description" content="goalster">
+    <meta name="author" content="SitePoint">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<style type="text/css">
-	body{
-		font-family: 'Montserrat', sans-serif;
-		background: linear-gradient(45deg, #FC466B 0%, #3F5EFB 100%);
-		color:#FFFFFF;
-		margin:0;
-		width:100vw;
-		height: 100vh;
-		position: relative;
-	}
+    <style type="text/css">
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background: linear-gradient(45deg, #FC466B 0%, #3F5EFB 100%);
+            color: #FFFFFF;
+            margin: 0;
+            width: 100vw;
+            height: 100vh;
+            position: relative;
+        }
 
-	html, body {
-  		overflow-x: hidden;
-	}
+        html,
+        body {
+            overflow-x: hidden;
+        }
 
-	#main{		
-		color: #ffffff;
-		position: absolute;
-  		top: 50%; 
-  		left: 50%;
-  		transform: translate(-50%,-50%);
-  		text-align: center;
-	}
+        #main {
+            color: #ffffff;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+        }
 
-	#name{
-		font-size: 18px;
-		font-weight: 400;
-		position: absolute;
-		top:30px;
-		left:30px;
-	}
-	#score{
-		font-size: 120px;
-		font-weight: 900;
-		line-height: 100%;
-	}
-	#target{
-		font-size: 32px;
-		float:right;
-		clear: both;
-	}
-	#goal_title{
-		text-align: left;
-		position: absolute;
-		bottom:30px;
-		left:30px;
-	}
-	#goal_title span{
-		font-size: 18px;
-		font-weight: 400;
-	}
-	#goal_title div{
-		clear:both;
-		font-size: 32px;
-		font-weight: 900;
-		width:70%;
-	}
-	#progress{
-		position: absolute;
-		right:20px;
-		top:30px;
-		width:16px;
-		border-radius: 999px;
-		background:rgba(255,255,255,0.15);
-		height: calc(var(--vh, 1vh) * 100 - 60px);
-	}
-	#achieved{
-		position:absolute;
-		width:100%;
-		height:35%;
-		background: rgba(255,255,255,0.8);
-		bottom: 0;
-		border-radius: 0 0 99px 99px;
-	}
-</style>
+        #name {
+            font-size: 18px;
+            font-weight: 400;
+        }
+
+        #score {
+            font-size: 120px;
+            font-weight: 900;
+            line-height: 100%;
+        }
+
+        #target {
+            font-size: 32px;
+            float: right;
+            clear: both;
+        }
+
+        #goal_title {
+            text-align: left;
+            position: absolute;
+            bottom: 30px;
+            left: 30px;
+        }
+
+        #goal_title span {
+            font-size: 18px;
+            font-weight: 400;
+        }
+
+        #goal_title div {
+            clear: both;
+            font-size: 32px;
+            font-weight: 900;
+            width: 70%;
+        }
+
+        #progress {
+            width: 90%;
+            margin: 0 auto;
+            margin-top: 20px;
+            height: 16px;
+            border-radius: 999px;
+            background: rgba(255, 255, 255, 0.15);
+        }
+
+        #achieved {
+            position: absolute;
+            width: 60%;
+            background: rgba(255, 255, 255, 0.8);
+            border-radius: 99px 0 0 99px;
+        }
+    </style>
 
 </head>
 
 <body>
+    <div class="wrapper">
 
-  	<div id="progress">
-  		<div id="achieved"></div>
-  	</div>
+        <div id="goal_title">
+            <span>Goal:</span>
+            <div>New Xiaomi A3 64GB</div>
+        </div>
 
-  	<div id="goal_title">
-  		<span>Goal:</span>
-  		<div>New Xiaomi A3 64GB</div>
-  	</div>
+        <div id="main">
+            <div id="score"></div>
+            <div id="target">/ 250</div>
+        </div>
 
-  	<div id="main">
-  		<div id="score"></div>
-  		<div id="target">/ 250</div>
-  	</div>
-  	<div id="name">Rotem Bar Shalom</div>
+        <div id="progress">
+            <!--  		<div id="achieved"></div>-->
+        </div>
 
-<script type="text/javascript">
-	var myHeaders = new Headers();
-	myHeaders.append("Content-Type", "application/json");
-	myHeaders.append("User-Agent", "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/80.0.3987.132 Safari/537.36");
-	myHeaders.append("Sec-Fetch-Dest", "empty");
 
-	var raw = JSON.stringify({"target_property":"amount","group_by":"kid"});
+        <div id="name">Rotem Bar Shalom</div>
 
-	var requestOptions = {
-	  method: 'POST',
-	  headers: myHeaders,
-	  body: raw,
-	  redirect: 'follow'
-	};
-
-	fetch("https://datawaves.io/api/v1.0/projects/bppnu7223akg0274c7dg/queries/goals/sum", requestOptions)
-	  	.then(response => response.json())
-		.then(json => { document.querySelector("#score").innerText = json.result[0].sum })
-	  	.catch(error => console.log('error', error));
-
-	// set the proper height for the progress bar
-	// First we get the viewport height and we multiple it by 1% to get a value for a vh unit
-	let vh = window.innerHeight * 0.01;
-	// Then we set the value in the --vh custom property to the root of the document
-	document.documentElement.style.setProperty('--vh', `${vh}px`);
-
-</script>
-
+    </div>
 </body>
+<script type="text/javascript" src="main.js"></script>
+
+<script>
+    // set the proper height for the progress bar
+    // First we get the viewport height and we multiple it by 1% to get a value for a vh unit
+    //let vh = window.innerHeight * 0.01;
+    // Then we set the value in the --vh custom property to the root of the document
+    // document.documentElement.style.setProperty('--vh', `${vh}px`);
+</script>
 
 </html>

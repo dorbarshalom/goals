@@ -75,7 +75,7 @@
 		float:left;
 		width:50%;
 	}
-	.score{
+	.goal{
 		font-size: 48px;
 	}
 	sup{
@@ -148,13 +148,13 @@
  			<div class="kid_name">Rotem</div>
 	 		<div class="change_score">
 
-	 			<div class="minus" onclick="increment(-1, 'rotem', 'mobile')">
+	 			<div class="minus" onclick="getIncrement(-1, 'rotem', 'mobile')">
 	 				<!-- <i class="far fa-minus-circle"></i> -->
 	 			</div>
 	 			
-	 			<div class="increment">222</div>
+	 			<div class="score">222</div>
 	 			
-	 			<div class="plus" onclick="increment(1, 'rotem', 'mobile')">
+	 			<div class="plus" onclick="getIncrement(1, 'rotem', 'mobile')">
 	 				<!-- <i class="far fa-plus-circle"></i> -->
 	 			</div>
 	 		</div>
@@ -182,8 +182,8 @@
  		</div>
  		<div class="info">
 			<div class="score_status">
- 				<div class="label">Score</div>
- 				<div class="score">76<sup>/ 250</sup></div>
+ 				<div class="label">Goal</div>
+ 				<div class="goal">250</div>
 			</div>
 			<div class="reward">
  				<div class="label">Reward</div>
@@ -202,7 +202,7 @@
 
 <script type="text/javascript">
 
-	function increment(updown,kid,category){
+	function getIncrement(updown,kid,category){
 		updateScore(updown*parseInt(document.getElementById('scoreIncrement').value), kid, category);
 	}
 
@@ -226,11 +226,12 @@
 	}
 
 	//var increment = document.getElementById('scoreIncrement').value;
-
+    
 	function updateIncrement(inc){
-		 document.querySelector(".minus").innerHTML = -1*inc;
-		  document.querySelector(".plus").innerHTML = inc;
+		document.querySelector(".minus").innerHTML = -1*inc;
+        document.querySelector(".plus").innerHTML = inc;
 	};
+    updateIncrement(1);
 
 </script>
 

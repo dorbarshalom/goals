@@ -41,7 +41,7 @@
             font-weight: 400;
         }
 
-        #score {
+        .score {
             font-size: 120px;
             font-weight: 900;
             line-height: 100%;
@@ -100,7 +100,7 @@
         </div>
 
         <div id="main">
-            <div id="score"></div>
+            <div class="score" id="rotem"></div>
             <div id="target">/ 250</div>
         </div>
 
@@ -109,7 +109,7 @@
         </div>
 
 
-        <div id="name">Rotem Bar Shalom</div>
+        <div id="name">Rotem</div>
 
     </div>
 </body>
@@ -121,6 +121,8 @@
     let vh = window.innerHeight * 0.01;
     // Then we set the value in the --vh custom property to the root of the document
     document.documentElement.style.setProperty('--vh', `${vh}px`);
+    
+    fetchScore(0);
 </script>
 
 </html>

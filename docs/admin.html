@@ -23,16 +23,6 @@
 	#wrapper{
 		padding:15px;
 	}
-
-	.change_score .far{
-		font-size: 64px;
-		font-weight: 300;		
-	}
-	.change_score{
-		font-size: 64px;
-		display: inline-block;
-		width:100%;
-	}
 	.main{
 		border-radius: 8px;
 		color: #ffffff;
@@ -45,11 +35,24 @@
 	.kid.second .main{
 		background: linear-gradient(45deg, #69D200 0%, #F3DC0B 100%);
 	}
-	.change_score > div{
-		text-align: center;
-		width: 33%;
-		float: left;
+    .change_score{
+		font-size: 48px;
+		display: inline-block;
+		width:100%;
 	}
+    .minus, .plus{
+        border-radius: 99px;
+        border:3px solid #ffffff;
+        width:15%;
+        text-align: center;
+        cursor: pointer;
+        float: left;
+    }
+    .score{
+        display: inline-block;
+        float:left;
+        width:68%;
+    }
 	.kid{
   		padding-top: 30px;
 	}
@@ -126,7 +129,7 @@
 	.select_increment input.last + label{
 		border-radius: 0 6px 6px 0;
 	}
-
+    
 
 </style>
 
@@ -147,16 +150,12 @@
  		<div class="main">
  			<div class="kid_name">Rotem</div>
 	 		<div class="change_score">
-
-	 			<div class="minus" onclick="getIncrement(-1, 'rotem', 'mobile')">
-	 				<!-- <i class="far fa-minus-circle"></i> -->
-	 			</div>
+                
+	 			<div class="minus" onclick="getIncrement(-1, 'rotem', 'mobile')"></div>
 	 			
-	 			<div class="score">222</div>
+	 			<div class="score" id="rotem"></div>
 	 			
-	 			<div class="plus" onclick="getIncrement(1, 'rotem', 'mobile')">
-	 				<!-- <i class="far fa-plus-circle"></i> -->
-	 			</div>
+	 			<div class="plus" onclick="getIncrement(1, 'rotem', 'mobile')"></div>
 	 		</div>
 	 		<div class="select_increment">
 
@@ -200,40 +199,15 @@
   	
  </div>
 
+</body>
+
+<script type="text/javascript" src="main.js"></script>
+
 <script type="text/javascript">
 
-	function getIncrement(updown,kid,category){
-		updateScore(updown*parseInt(document.getElementById('scoreIncrement').value), kid, category);
-	}
-
-	function updateScore (amount, kid, category) {
-	    // const URI = 'https://datawaves.io/api/v1.0/projects/bppnu7223akg0274c7dg/events/score'
-	    const URI = 'https://goals-i9rlmguq9ba8.runkit.sh/'
-	    fetch(URI, {
-	        method: 'POST', 
-			mode: 'no-cors',
-	        headers: {
-	            // Authorization: '09c166a6875c4rrWhvbVrJSWfWK1VcLi4b859e3b607cd090dd0c',
-	            "Content-Type": "application/json"
-	        },
-	        body: JSON.stringify({
-	            kid, amount, category
-	        })
-	    })
-	    .then( (httpResponse) => {
-	        console.log("Sent data to datawaves. response ok:" + httpResponse.ok)
-	    })
-	}
-
-	//var increment = document.getElementById('scoreIncrement').value;
-    
-	function updateIncrement(inc){
-		document.querySelector(".minus").innerHTML = -1*inc;
-        document.querySelector(".plus").innerHTML = inc;
-	};
     updateIncrement(1);
-
+    fetchScore('rotem',0);
+    
 </script>
 
-</body>
 </html>

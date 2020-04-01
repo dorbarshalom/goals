@@ -41,6 +41,7 @@
 		width:100%;
         background: rgba(255,255,255,0.1);
         border-radius: 4px;
+        margin-bottom: 25px;
 	}
     .minus, .plus{
         background: rgba(0,0,0,0.5);
@@ -108,8 +109,8 @@
 		position: relative;
 		background:rgba(0,0,0,0.1);
 		display: inline-block;
-		margin: 20px 0 0 0;
 		padding: 0;
+        margin:0;
 		border-radius: 4px;
 	}
 	.select_increment li{
@@ -140,6 +141,10 @@
 	.select_increment input.last + label{
 		border-radius: 0 6px 6px 0;
 	}
+    .subtitle{
+        margin:20px 0 10px 0;
+    }
+    
     
 
 </style>
@@ -160,6 +165,7 @@
  		
  		<div class="main">
  			<div class="kid_name">Rotem</div>
+ 			<div class="subtitle">Current score</div>
 	 		<div class="change_score">
                 
 	 			<div class="minus" onclick="getIncrement(-1, 'rotem', 'mobile')"></div>
@@ -169,7 +175,7 @@
 	 			<div class="plus" onclick="getIncrement(1, 'rotem', 'mobile')"></div>
 	 		</div>
 	 		<div class="select_increment">
-
+                <div class="subtitle">How much points to add?</div>
 	 			<ul>
 	 				<li>
 	 					<input type="radio" id="one" name="inc" value="1" checked class="first" onclick="updateIncrement(1)">

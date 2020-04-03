@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title></title>
+</head>
+
+<body>
+
+    <!--    <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>-->
+
+
+    <script src="https://code.jquery.com/jquery-2.2.3.min.js"></script>
+    <script src="https://goals-d78c.restdb.io/assets/js/eventsource.min.js"></script>
+    <script src="https://goals-d78c.restdb.io/rest/_jsapi.js"></script>
+    <script>
+        $(document).ready(function() {
+
+            //            var db = new restdb("f6a003cc58e2b8e6f30709c555499d8370b10");
+            //
+            //            var query = {}; // all
+            //            var hint = {
+            //                "$max": 10
+            //            }; // first 10 only
+            //            db.goals.find(query, hint, function(err, kid) {
+            //            });
+            //            console.log(query);
+
+            var settings = {
+                "async": true,
+                "crossDomain": true,
+                "url": "https://goals-d78c.restdb.io/rest/goals",
+                "method": "GET",
+                "headers": {
+                    //"Access-Control-Allow-Origin" : "*",
+                    "content-type": "application/json",
+                    "x-apikey": "f6a003cc58e2b8e6f30709c555499d8370b10",
+                    "cache-control": "no-cache"
+                }
+            }
+
+            $.ajax(settings).done(function(response) {
+                console.log(response);
+            });
+        });
+    </script>
+</body>
+
+</html>

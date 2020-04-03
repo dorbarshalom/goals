@@ -28,8 +28,8 @@ function fetchScore(kid_name,kid_id) {
 
 // update the +- buttons value
 function updateIncrement(inc) {
-    document.querySelector(".minus").innerHTML = -1 * inc;
-    document.querySelector(".plus").innerHTML = inc;
+    document.querySelector(".minus").innerText = -1 * inc;
+    document.querySelector(".plus").innerText = inc;
 };
 
 // get increment from toggle selector

@@ -11,16 +11,16 @@
 
     <!--    <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>-->
 
-
     <script src="https://code.jquery.com/jquery-2.2.3.min.js"></script>
     <script src="https://goals-d78c.restdb.io/assets/js/eventsource.min.js"></script>
     <script src="https://goals-d78c.restdb.io/rest/_jsapi.js"></script>
     <script>
-      
-            var settings = {
+        // fetch family
+        function fetchData(url, callback) {
+            var options = {
                 "async": true,
                 "crossDomain": true,
-                "url": "https://goals-d78c.restdb.io/rest/goals",
+                "url": "https://goals-d78c.restdb.io/rest/" + url,
                 "method": "GET",
                 "headers": {
                     "content-type": "application/json",
@@ -29,12 +29,50 @@
                 }
             }
 
-            $.ajax(settings).done(function(response) {
-                //console.log(response);
-                var obj = (response[2]);
+            $.ajax(options).done(function(response) {
+                    
+                var obj = (response);
                 console.log(obj);
+                
+                if (callback) {
+                    callback(response);
+                }
+
             });
-    
+        }
+        
+        /* 
+        get family id
+        
+        
+        get all family members
+            fetchData("members?q={\"family._id\":\"5e8d8ca15053da750001e228\"}");
+        
+        wiseguy children:
+            {_id: "5e8ae9005053da750001c19e", name: "Annabell", _mock: true, role: "child", family: Array(1)}
+            {_id: "5e8ae9005053da750001c193", name: "Anna", _mock: true, role: "child", family: Array(1)}
+
+        get members goals
+        
+        
+        */
+        
+        fetchData("members/5e8ae9005053da750001c1a2", 
+            function(response) {
+              let family_id = response.family[0]._id;
+            
+              // make the next call to fetch the family here
+              fetchData("members?q={\"family._id\":\"" + family_id + "\"}", function(response) {
+                //here what you want to do with the family obj
+                let family_child2 = response[2]._id;
+                //console.log(family_child2);
+                  
+                  fetchData("goals/?q={\"member._id\":\"" + family_child2 + "\"}"){
+                      console.log("this is anna goal");
+                  }
+              });
+        });
+        
         
     </script>
 </body>

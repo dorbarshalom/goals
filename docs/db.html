@@ -30,72 +30,44 @@
             }
 
             $.ajax(options).done(function(response) {
-                    
+
                 var obj = (response);
                 console.log(obj);
-                
+
                 if (callback) {
                     callback(response);
                 }
 
             });
         }
-        
-        /* 
-        get family id
-        
-        
-        get all family members
-            fetchData("members?q={\"family._id\":\"5e8d8ca15053da750001e228\"}");
-        
-        wiseguy children:
-            {_id: "5e8ae9005053da750001c19e", name: "Annabell", _mock: true, role: "child", family: Array(1)}
-            {_id: "5e8ae9005053da750001c193", name: "Anna", _mock: true, role: "child", family: Array(1)}
 
-        get members goals
-        
-        
-        */
-        
-        fetchData("members/5e8ae9005053da750001c1a2", 
+        fetchData("members/5e8ae9005053da750001c1a2",
             function(response) {
-              let family_id = response.family[0]._id;
-            
-              // fetch family members who are role:child
-              fetchData("members?q={\"family._id\":\"" + family_id + "\"}",
-                function(response) {
-                  //here what you want to do with the family obj
-                  
-                  console.log(response[2].goals[0].name);
-                  
-                  //get a member id  
-                  
-                  /*
-                  var i;
-                    for (i = 0; i < response.length; i++) {
-                      if(response[i].role === "child"){
-                        console.log(response[i].name + " is a child");
+                let family_id = response.family[0]._id;
+
+                fetchData("members?q={\"family._id\":\"" + family_id + "\"}",
+                    function(response) {
+                        //here what you want to do with the family obj
+
+                        var i;
+                        var g;
+                        for (i = 0; i < response.length; i++) {
+                            console.log(response[i].name + " has these goals:");
+                            if (response[i].role === "child") {
+                                for(g = 0; g <2; g++){
+                                    console.log(response[i].goals[g]);
+                                }
+                            }
                         }
-                    }
-                    */
-                  
-                  
-                    /*
-                      fetchData("goals?q={\"member._id\":\"" + family_child2 + "\"}",
-                        function(){
-                          console.log("this is anna goal");
-                      });
-                    */
-              });
-        });
-        
+                    });
+            });
+
         /*
             // goals json
             {
                 {title: 'mobile', target: '250',    }
             }
         */
-        
     </script>
 </body>
 

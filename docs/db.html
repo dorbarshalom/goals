@@ -61,18 +61,40 @@
             function(response) {
               let family_id = response.family[0]._id;
             
-              // make the next call to fetch the family here
-              fetchData("members?q={\"family._id\":\"" + family_id + "\"}", function(response) {
-                //here what you want to do with the family obj
-                let family_child2 = response[2]._id;
-                //console.log(family_child2);
+              // fetch family members who are role:child
+              fetchData("members?q={\"family._id\":\"" + family_id + "\"}",
+                function(response) {
+                  //here what you want to do with the family obj
                   
-                  fetchData("goals/?q={\"member._id\":\"" + family_child2 + "\"}"){
-                      console.log("this is anna goal");
-                  }
+                  console.log(response[2].goals[0].name);
+                  
+                  //get a member id  
+                  
+                  /*
+                  var i;
+                    for (i = 0; i < response.length; i++) {
+                      if(response[i].role === "child"){
+                        console.log(response[i].name + " is a child");
+                        }
+                    }
+                    */
+                  
+                  
+                    /*
+                      fetchData("goals?q={\"member._id\":\"" + family_child2 + "\"}",
+                        function(){
+                          console.log("this is anna goal");
+                      });
+                    */
               });
         });
         
+        /*
+            // goals json
+            {
+                {title: 'mobile', target: '250',    }
+            }
+        */
         
     </script>
 </body>

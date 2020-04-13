@@ -1,0 +1,91 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+
+  <title>set your kids goals</title>
+  <link href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" rel="stylesheet">
+  <meta name="description" content="goalster">
+  <meta name="author" content="SitePoint">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style type="text/css">
+	body{
+		font-family: 'Montserrat', sans-serif;
+	}
+
+	
+</style>
+
+<!-- chart JS -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script>
+
+</head>
+
+<body>
+
+<div class="main">
+	<canvas id="myChart" width="400" height="200"></canvas>
+</div>
+
+
+
+<script type="text/javascript">
+	var myHeaders = new Headers();
+	myHeaders.append("Content-Type", "application/json");
+	myHeaders.append("Content-Type", "application/json");
+	myHeaders.append("Cookie", "__cfduid=d5667c90297959f6e1e9841564cb811951585393570");
+
+	var raw = JSON.stringify({"target_property":"amount","interval":"day","timezone":"Asia/Jerusalem","filters":[{"property_name":"kid","operator":"eq","property_value":"rotem"}]});
+
+	var requestOptions = {
+	  method: 'POST',
+	  headers: myHeaders,
+	  body: raw,
+	  redirect: 'follow'
+	};
+
+	fetch("https://datawaves.io/api/v1.0/projects/bppnu7223akg0274c7dg/queries/goals/sum", requestOptions)
+	  .then(response => response.json())
+	  .then(result => {
+	  	renderChart(result.result)
+	  }) 
+	 .catch(error => console.log('error', error));
+
+	 function renderChart(data){
+	 	console.log(data);
+
+	 	var ctx = document.getElementById('myChart');
+		var myChart = new Chart(ctx, {
+		    type: 'bar',
+		    data: {
+		        labels: data.map(date=>{
+		        	const d = new Date(date.start)
+					const ye = new Intl.DateTimeFormat('en', { year: 'numeric' }).format(d)
+					const mo = new Intl.DateTimeFormat('en', { month: 'short' }).format(d)
+					const da = new Intl.DateTimeFormat('en', { day: '2-digit' }).format(d)
+					return `${da}-${mo}-${ye}`
+		        }),
+		        datasets: [{
+		            label: 'score',
+		            data: data.map(d=>d.sum),
+		            borderWidth: 1
+		        }]
+		    },
+		    options: {
+		        scales: {
+		            yAxes: [{
+		                ticks: {
+		                    beginAtZero: true
+		                }
+		            }]
+		        }
+		    }
+		});
+	 }
+</script>
+
+</body>
+
+</html>

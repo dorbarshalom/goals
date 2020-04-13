@@ -1,0 +1,151 @@
+body {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 17px;
+    font-weight: 400;
+}
+
+#wrapper {
+    padding: 15px;
+}
+
+.main {
+    border-radius: 8px;
+    color: #ffffff;
+    text-align: center;
+    padding: 15px;
+    background: linear-gradient(45deg, #FC466B 0%, #3F5EFB 100%);
+}
+
+.kid .main {
+    
+}
+
+.kid.second .main {
+/*    background: linear-gradient(45deg, #69D200 0%, #F3DC0B 100%);*/
+}
+
+.change_score {
+    font-size: 40px;
+    display: inline-block;
+    width: 100%;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 4px;
+    margin-bottom: 25px;
+}
+
+.minus,
+.plus {
+    background: rgba(0, 0, 0, 0.5);
+    width: 25%;
+    text-align: center;
+    cursor: pointer;
+    float: left;
+    padding: 10px 0;
+}
+
+.plus {
+    border-radius: 0 4px 4px 0;
+
+}
+
+.minus {
+    border-radius: 4px 0 0 4px;
+}
+
+.score {
+    display: inline-block;
+    float: left;
+    width: 50%;
+    padding: 10px 0;
+}
+
+.kid {
+    padding-top: 30px;
+}
+
+.kid_name {
+    font-size: 32px;
+    margin-bottom: 20px;
+}
+
+h1 {
+    font-size: 24px;
+    font-weight: 700;
+    text-align: center;
+}
+
+.info {
+    text-align: left;
+    padding: 20px 30px;
+    display: inline-block;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.info > div {
+    float: left;
+    width: 50%;
+}
+
+.goal {
+    font-size: 48px;
+}
+
+sup {
+    font-size: 19px;
+}
+
+.reward {
+    font-size: 19px;
+}
+
+.label {
+    font-size: 15px;
+    opacity: 0.5;
+    font-weight: 400;
+}
+
+.select_increment ul {
+    width: 70%;
+    position: relative;
+    background: rgba(0, 0, 0, 0.1);
+    display: inline-block;
+    padding: 0;
+    margin: 0;
+    border-radius: 4px;
+}
+
+.select_increment li {
+    width: 25%;
+    list-style: none;
+    float: left;
+    text-align: center;
+}
+
+.select_increment input {
+    visibility: hidden;
+    margin: 0;
+    float: left;
+}
+
+.select_increment label {
+    cursor: pointer;
+    display: block;
+    padding: 15px 0;
+}
+
+.select_increment input:checked + label {
+    background: rgba(0, 0, 0, 0.6);
+}
+
+.select_increment input.first + label {
+    border-radius: 6px 0 0 6px;
+}
+
+.select_increment input.last + label {
+    border-radius: 0 6px 6px 0;
+}
+
+.subtitle {
+    margin: 20px 0 10px 0;
+}

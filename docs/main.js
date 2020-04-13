@@ -23,12 +23,11 @@ function fetchScore(kid_name, kid_id) {
             document.getElementById(kid_name).innerText = json.result[kid_id].sum;
         })
         .catch(error => console.log('error', error));
-
-    setTimeout(function () {
-        fetchScroe(kid_name, kid_id)
-    }, 5 * 60 * 1000)
 }
 
+//setTimeout(function () {
+//        fetchScroe(kid_name, kid_id)
+//    }, 5 * 60 * 1000)
 
 // update the +- buttons value
 function updateIncrement(inc) {

@@ -1,230 +1,164 @@
-<!doctype html>
-
+<!DOCTYPE html>
 <html lang="en">
+
 <head>
+    <meta charset="utf-8">
+    <title></title>
 
-
-
-  <meta charset="utf-8">
-
-  <title>manage kids goals</title>
-  <link href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" rel="stylesheet">
-  <meta name="description" content="The HTML5 Herald">
-  <meta name="author" content="SitePoint">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<style type="text/css">
-	body{
-		font-family: 'Montserrat', sans-serif;
-		font-size: 17px;
-		font-weight: 400;
-	}
-
-	#wrapper{
-		padding:15px;
-	}
-	.main{
-		border-radius: 8px;
-		color: #ffffff;
-  		text-align: center;
-  		padding:15px;
-	}
-	.kid.first .main{
-		background: linear-gradient(45deg, #FC466B 0%, #3F5EFB 100%);
-	}
-	.kid.second .main{
-		background: linear-gradient(45deg, #69D200 0%, #F3DC0B 100%);
-	}
-    .change_score{
-		font-size: 40px;
-		display: inline-block;
-		width:100%;
-        background: rgba(255,255,255,0.1);
-        border-radius: 4px;
-        margin-bottom: 25px;
-	}
-    .minus, .plus{
-        background: rgba(0,0,0,0.5);
-        width:25%;
-        text-align: center;
-        cursor: pointer;
-        float: left;
-        padding:10px 0;
-    }
-    .plus{
-        border-radius: 0 4px 4px 0;
-        
-    }
-    .minus{
-        border-radius: 4px 0 0 4px;
-    }
-    .score{
-        display: inline-block;
-        float:left;
-        width:50%;
-        padding:10px 0;
-    }
-	.kid{
-  		padding-top: 30px;
-	}
-
-	.kid_name{
-		font-size: 32px;
-        margin-bottom: 20px;
-	}
-	
-	h1{
-		font-size: 24px;
-		font-weight: 700;
-		text-align: center;
-	}
-
-	.info{
-		text-align: left;
-		padding:20px 30px;
-		display: inline-block;
-		width:100%;
-		box-sizing: border-box;
-	}
-	.info > div{
-		float:left;
-		width:50%;
-	}
-	.goal{
-		font-size: 48px;
-	}
-	sup{
-		font-size: 19px;
-	}
-	.reward{
-		font-size: 19px;
-	}
-	.label{
-		font-size: 15px;
-		opacity: 0.5;
-		font-weight: 400;
-	}
-	.select_increment ul{
-		width:70%;
-		position: relative;
-		background:rgba(0,0,0,0.1);
-		display: inline-block;
-		padding: 0;
-        margin:0;
-		border-radius: 4px;
-	}
-	.select_increment li{
-		width: 25%;
-		list-style: none;
-		float: left;
-		text-align: center;
-	}
-	
-	.select_increment input{
-		visibility:hidden;
-		margin: 0;
-		float: left;
-	}
-	.select_increment label {
-    	cursor: pointer;
-    	display: block;
-    	padding: 15px 0;
-	}
-	.select_increment input:checked + label {
-    	background: rgba(0,0,0,0.6);
-	}
-
-	.select_increment input.first + label{
-		border-radius: 6px 0 0 6px;
-	}
-
-	.select_increment input.last + label{
-		border-radius: 0 6px 6px 0;
-	}
-    .subtitle{
-        margin:20px 0 10px 0;
-    }
-    
-    
-
-</style>
-
-<script src="https://kit.fontawesome.com/35f7aef1c0.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" type="text/css" href="admin.css">
+    <script type="text/javascript" src="main.js"></script>
 
 </head>
 
 <body>
-  
-  <div id="wrapper">
 
-	<h1>Manage kids score</h1>
+    <div id="main">
 
-	<!-- kid #1 -->
+    </div>
 
- 	<div class="kid first">
- 		
- 		<div class="main">
- 			<div class="kid_name">Rotem</div>
- 			<div class="subtitle">Current score</div>
-	 		<div class="change_score">
-                
-	 			<div class="minus" onclick="updateScore(-1, 'rotem', 'mobile')"></div>
-	 			
-	 			<div class="score" id="rotem"></div>
-	 			
-	 			<div class="plus" onclick="updateScore(1, 'rotem', 'mobile')"></div>
-	 		</div>
-	 		<div class="select_increment">
-                <div class="subtitle">How much points to add?</div>
-	 			<ul>
-	 				<li>
-	 					<input type="radio" id="one" name="inc" value="1" checked class="first" onclick="updateIncrement(1)">
-						<label for="one">1</label>
-	 				</li>
-	 				<li>
-	 					<input type="radio" id="two" name="inc" value="2" onclick="updateIncrement(2)">
-						<label for="two">2</label>
-	 				</li>
-	 				<li>
-						<input type="radio" id="five" name="inc" value="5" onclick="updateIncrement(5)">
-						<label for="five">5</label>
-	 				</li>
-	 				<li>
-	 					<input type="radio" id="ten" name="inc" value="10" class="last" onclick="updateIncrement(10)">
-						<label for="ten">10</label>
-	 				</li>
-	 			</ul>
-	 		</div>
- 		</div>
- 		<div class="info">
-			<div class="score_status">
- 				<div class="label">Goal</div>
- 				<div class="goal">250</div>
-			</div>
-			<div class="reward">
- 				<div class="label">Reward</div>
- 				<div>New Xiaomi A3 64GB</div>
-			</div>
-		</div>
- 	</div>
+    <script src="https://code.jquery.com/jquery-2.2.3.min.js"></script>
+    <script src="https://goals-d78c.restdb.io/assets/js/eventsource.min.js"></script>
+    <script src="https://goals-d78c.restdb.io/rest/_jsapi.js"></script>
+    <script>
+        // fetch family
+        function fetchData(url, callback) {
+            var options = {
+                "async": true,
+                "crossDomain": true,
+                "url": "https://goals-d78c.restdb.io/rest/" + url,
+                "method": "GET",
+                "headers": {
+                    "content-type": "application/json",
+                    "x-apikey": "5e872193111788414066c5e9",
+                    "cache-control": "no-cache"
+                }
+            }
 
- 	
-  		
-  		<!-- <div id="increment">
-  			<input type="number" pattern="[0-9]+" inputmode="numeric" name="scoreIncrement" id="scoreIncrement" value="1">
-  		</div> -->
-  	
- </div>
+            $.ajax(options).done(function(response) {
 
+                var obj = (response);
+                console.log(obj);
+
+                if (callback) {
+                    callback(response);
+                }
+
+            });
+        }
+
+
+        kidTemplate = function(kidName, score, target, reward) {
+            return `
+                <div class="kid">
+
+                    <div class="main">
+                        <div class="kid_name">${kidName}</div>
+                        <div class="subtitle">Current score</div>
+                        <div class="change_score">
+
+                            <div class="minus" onclick="updateScore(-1, 'rotem', 'mobile')"></div>
+
+                            <div class="score">${score}</div>
+
+                            <div class="plus" onclick="updateScore(1, 'rotem', 'mobile')"></div>
+                        </div>
+                        <div class="select_increment">
+                            <div class="subtitle">How much points to add?</div>
+                            <ul>
+                                <li>
+                                    <input type="radio" id="one" name="inc" value="1" checked class="first" onclick="updateIncrement(1)">
+                                    <label for="one">1</label>
+                                </li>
+                                <li>
+                                    <input type="radio" id="two" name="inc" value="2" onclick="updateIncrement(2)">
+                                    <label for="two">2</label>
+                                </li>
+                                <li>
+                                    <input type="radio" id="five" name="inc" value="5" onclick="updateIncrement(5)">
+                                    <label for="five">5</label>
+                                </li>
+                                <li>
+                                    <input type="radio" id="ten" name="inc" value="10" class="last" onclick="updateIncrement(10)">
+                                    <label for="ten">10</label>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="info">
+                        <div class="score_status">
+                            <div class="label">Target</div>
+                            <div class="goal">${target}</div>
+                        </div>
+                        <div class="reward">
+                            <div class="label">Reward</div>
+                            <div>${reward}</div>
+                        </div>
+                    </div>
+                </div>
+            `
+        }
+
+        
+        
+        
+        fetchData("members/5e8ae9005053da750001c1a2",
+            function(response) {
+                let family_id = response.family[0]._id;
+
+                fetchData("members?q=" + JSON.stringify({
+                        "family._id": family_id
+                    }),
+                    function(response) {
+
+                        let memberIds = response.filter(member => member.role === 'child').map(member => member._id)
+
+                        fetchData("goals?q=" + JSON.stringify({
+                                "member._id": {
+                                    $in: memberIds
+                                },
+                                "isActive": true
+                            }),
+                            function(goals) {
+
+                                var i = 0;
+                                for (i = 0; i < goals.length; i++) {
+                                    $("#main").append(kidTemplate(goals[i].member[0].name, goals[i].score, goals[i].target, goals[i].reward));
+                                }
+
+                            }
+                        )
+
+                    });
+            });
+
+
+        //update score
+        function updateScore() {
+            var jsondata = {
+                goals: [{
+                    score: 55
+                }]
+            };
+
+            var settings = {
+                "async": true,
+                "crossDomain": true,
+                "url": "https://goals-d78c.restdb.io/rest/members/5e8ae9005053da750001c19e",
+                "method": "PUT",
+                "headers": {
+                    "content-type": "application/json",
+                    "x-apikey": "5e872193111788414066c5e9",
+                    "cache-control": "no-cache"
+                },
+                "processData": false,
+                "data": JSON.stringify(jsondata)
+            }
+
+            $.ajax(settings).done(function(response) {
+                console.log(response);
+            });
+        }
+    </script>
 </body>
-
-<script type="text/javascript" src="main.js"></script>
-
-<script type="text/javascript">
-
-    updateIncrement(1);
-    fetchScore('rotem',0);
-    
-</script>
 
 </html>

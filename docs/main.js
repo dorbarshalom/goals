@@ -3,13 +3,66 @@
 //    }, 5 * 60 * 1000)
 
 // update the +- buttons value
-function updateIncrement(inc) {
-    //document.querySelectorAll(".minus").innerText = -1 * inc;
-    //document.querySelectorAll(".plus").innerText = "+" + inc;
+function updateIncrement(element, inc) {
+    console.log(".kid[data-kid=" + element +"]");
+    document.querySelector(".kid[data-kid=" + element +"] .minus").innerText = -1 * inc;
+    document.querySelector(".kid[data-kid=" + element +"] .plus").innerText = "+" + inc;
 };
 
 // get increment from toggle selector
 //document.querySelector('input[name="inc"]:checked').value
+
+
+kidTemplate = function (kidName, score, target, reward) {
+    return `
+        <div class="kid ${kidName}" data-kid="${kidName}">
+            <div class="main">
+                <div class="kid_name">${kidName}</div>
+                <div class="subtitle">Current score</div>
+                <div class="change_score">
+
+                    <div class="minus" onclick="updateScore(-1, 'rotem', 'mobile')"></div>
+
+                    <div class="score">${score}</div>
+
+                    <div class="plus" onclick="updateScore(1, 'rotem', 'mobile')"></div>
+                </div>
+                <div class="select_increment">
+                    <div class="subtitle">How much points to add?</div>
+                    <ul>
+                        <li>
+                            <input type="radio" id="one" name="inc" value="1" checked class="first" onclick="updateIncrement('${kidName}', this.value)">
+                            <label for="one"> 1</label>
+                        </li>
+                        <li>
+                            <input type="radio" id="two" name="inc" value="2" onclick="updateIncrement('${kidName}', this.value)">
+                            <label for="two">2</label>
+                        </li>
+                        <li>
+                            <input type="radio" id="five" name="inc" value="5" onclick="updateIncrement('${kidName}', this.value)">
+                            <label for="five">5</label>
+                        </li>
+                        <li>
+                            <input type="radio" id="ten" name="inc" value="10" class="last" onclick="updateIncrement('${kidName}', this.value)">
+                            <label for="ten">10</label>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="info">
+                <div class="score_status">
+                    <div class="label">Target</div>
+                    <div class="goal">${target}</div>
+                </div>
+                <div class="reward">
+                    <div class="label">Reward</div>
+                    <div>${reward}</div>
+                </div>
+            </div>
+        </div>
+    `
+}
+
 
 // fetch family
 function fetchData(url, callback) {
@@ -38,57 +91,6 @@ function fetchData(url, callback) {
 }
 
 
-kidTemplate = function (kidName, score, target, reward) {
-    return `
-        <div class="kid ${kidName}">
-            <div class="main">
-                <div class="kid_name">${kidName}</div>
-                <div class="subtitle">Current score</div>
-                <div class="change_score">
-
-                    <div class="minus" onclick="updateScore(-1, 'rotem', 'mobile')"></div>
-
-                    <div class="score">${score}</div>
-
-                    <div class="plus" onclick="updateScore(1, 'rotem', 'mobile')"></div>
-                </div>
-                <div class="select_increment">
-                    <div class="subtitle">How much points to add?</div>
-                    <ul>
-                        <li>
-                            <input type="radio" id="one" name="inc" value="1" checked class="first" onclick="updateIncrement(this.value)">
-                            <label for="one">1</label>
-                        </li>
-                        <li>
-                            <input type="radio" id="two" name="inc" value="2" onclick="updateIncrement(this.value)">
-                            <label for="two">2</label>
-                        </li>
-                        <li>
-                            <input type="radio" id="five" name="inc" value="5" onclick="updateIncrement(this.value)">
-                            <label for="five">5</label>
-                        </li>
-                        <li>
-                            <input type="radio" id="ten" name="inc" value="10" class="last" onclick="updateIncrement(this.value)">
-                            <label for="ten">10</label>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-            <div class="info">
-                <div class="score_status">
-                    <div class="label">Target</div>
-                    <div class="goal">${target}</div>
-                </div>
-                <div class="reward">
-                    <div class="label">Reward</div>
-                    <div>${reward}</div>
-                </div>
-            </div>
-        </div>
-    `
-}
-
-
 fetchData("members/5e8ae9005053da750001c1a2",
     function (response) {
         let family_id = response.family[0]._id;
@@ -112,8 +114,6 @@ fetchData("members/5e8ae9005053da750001c1a2",
                         for (i = 0; i < goals.length; i++) {
                             $("#main").append(kidTemplate(goals[i].member[0].name, goals[i].score, goals[i].target, goals[i].reward));
                         }
-                        updateIncrement(1);
-
                     }
                 )
 

@@ -3,17 +3,21 @@
 //    }, 5 * 60 * 1000)
 
 // update the +- buttons value
+
 function updateIncrement(element, inc) {
     console.log(".kid[data-kid=" + element +"]");
-    document.querySelector(".kid[data-kid=" + element +"] .minus").innerText = -1 * inc;
-    document.querySelector(".kid[data-kid=" + element +"] .plus").innerText = "+" + inc;
-};
+        $(`.kid[data-kid="${element}"] .minus`).text(-1 * inc);
+        $(`.kid[data-kid="${element}"] .plus`).text("+" + inc);
+
+        $(".kid[data-kid=" + element + "] li").removeClass("active");
+        $(".kid[data-kid=" + element + "] li[data-value=" + inc + "]").addClass("active");
+    };
 
 // get increment from toggle selector
 //document.querySelector('input[name="inc"]:checked').value
 
 
-kidTemplate = function (kidName, score, target, reward) {
+kidTemplate = function (kidName, goalId, score, target, reward) {
     return `
         <div class="kid ${kidName}" data-kid="${kidName}">
             <div class="main">
@@ -21,31 +25,20 @@ kidTemplate = function (kidName, score, target, reward) {
                 <div class="subtitle">Current score</div>
                 <div class="change_score">
 
-                    <div class="minus" onclick="updateScore(-1, 'rotem', 'mobile')"></div>
+                    <div class="minus" data-kidid="${goalId}" onclick="updateScore(-1, 'rotem', 'mobile')"></div>
 
                     <div class="score">${score}</div>
 
-                    <div class="plus" onclick="updateScore(1, 'rotem', 'mobile')"></div>
+                    <div class="plus" onclick="updateScore('${goalId}', $('.${kidName} li.active.text()'))"></div>
                 </div>
                 <div class="select_increment">
                     <div class="subtitle">How much points to add?</div>
+                    
                     <ul>
-                        <li>
-                            <input type="radio" id="one" name="inc" value="1" checked class="first" onclick="updateIncrement('${kidName}', this.value)">
-                            <label for="one"> 1</label>
-                        </li>
-                        <li>
-                            <input type="radio" id="two" name="inc" value="2" onclick="updateIncrement('${kidName}', this.value)">
-                            <label for="two">2</label>
-                        </li>
-                        <li>
-                            <input type="radio" id="five" name="inc" value="5" onclick="updateIncrement('${kidName}', this.value)">
-                            <label for="five">5</label>
-                        </li>
-                        <li>
-                            <input type="radio" id="ten" name="inc" value="10" class="last" onclick="updateIncrement('${kidName}', this.value)">
-                            <label for="ten">10</label>
-                        </li>
+                        <li data-value="1" onclick="updateIncrement('${kidName}', 1)" class="first">1</li>
+                        <li data-value="2" onclick="updateIncrement('${kidName}', 2)">2</li>
+                        <li data-value="5" onclick="updateIncrement('${kidName}', 5)">5</li>
+                        <li data-value="10" onclick="updateIncrement('${kidName}', 10)" class="last">10</li>
                     </ul>
                 </div>
             </div>
@@ -112,7 +105,7 @@ fetchData("members/5e8ae9005053da750001c1a2",
 
                         var i = 0;
                         for (i = 0; i < goals.length; i++) {
-                            $("#main").append(kidTemplate(goals[i].member[0].name, goals[i].score, goals[i].target, goals[i].reward));
+                            $("#main").append(kidTemplate(goals[i].member[0].name, goals[i]._id, goals[i].score, goals[i].target, goals[i].reward));
                         }
                     }
                 )
@@ -122,17 +115,12 @@ fetchData("members/5e8ae9005053da750001c1a2",
 
 
 //update score
-function updateScore() {
-    var jsondata = {
-        goals: [{
-            score: 55
-                }]
-    };
-
+function updateScore(goal_id, inc) {
+    var jsondata = {"$inc": {"score": inc}}
     var settings = {
         "async": true,
         "crossDomain": true,
-        "url": "https://goals-d78c.restdb.io/rest/members/5e8ae9005053da750001c19e",
+        "url": "https://goals-d78c.restdb.io/rest/goals/" + goal_id,
         "method": "PUT",
         "headers": {
             "content-type": "application/json",
@@ -147,3 +135,4 @@ function updateScore() {
         console.log(response);
     });
 }
+

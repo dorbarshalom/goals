@@ -120,30 +120,12 @@ sup {
     list-style: none;
     float: left;
     text-align: center;
-}
-
-.select_increment input {
-    visibility: hidden;
-    margin: 0;
-    float: left;
-}
-
-.select_increment label {
     cursor: pointer;
-    display: block;
     padding: 15px 0;
 }
 
-.select_increment input:checked + label {
+.select_increment li.active{
     background: rgba(0, 0, 0, 0.6);
-}
-
-.select_increment input.first + label {
-    border-radius: 6px 0 0 6px;
-}
-
-.select_increment input.last + label {
-    border-radius: 0 6px 6px 0;
 }
 
 .subtitle {

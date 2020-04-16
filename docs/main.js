@@ -5,12 +5,12 @@
 // update the +- buttons value
 
 function updateIncrement(element, inc) {
-    console.log(".kid[data-kid=" + element +"]");
-        $(`.kid[data-kid="${element}"] .minus`).text(-1 * inc);
-        $(`.kid[data-kid="${element}"] .plus`).text("+" + inc);
+    console.log(".kid[data-goal=" + element +"]");
+        $(`.kid[data-goal="${element}"] .minus`).text(-1 * inc);
+        $(`.kid[data-goal="${element}"] .plus`).text("+" + inc);
 
-        $(".kid[data-kid=" + element + "] li").removeClass("active");
-        $(".kid[data-kid=" + element + "] li[data-value=" + inc + "]").addClass("active");
+        $(".kid[data-goal=" + element + "] li").removeClass("active");
+        $(".kid[data-goal=" + element + "] li[data-value=" + inc + "]").addClass("active");
     };
 
 
@@ -21,13 +21,17 @@ function updateIncrement(element, inc) {
 
 kidTemplate = function (kidName, goalId, score, target, reward) {
     return `
-        <div class="kid ${kidName}" data-kid="${kidName}" data-goal="${goalId}">
+        <div class="kid ${kidName}" data-goal="${goalId}">
+        
             <div class="main">
+            <div class="overlay">
+                 <div class="spinner"></div>
+            </div>
                 <div class="kid_name">${kidName}</div>
                 <div class="subtitle">Current score</div>
                 <div class="change_score">
 
-                    <div class="minus" data-kidid="${goalId}" onclick="updateScore(-1, 'rotem', 'mobile')"></div>
+                    <div class="minus" data-goalid="${goalId}" onclick="updateScore(-1, 'rotem', 'mobile')"></div>
 
                     <div class="score">${score}</div>
 
@@ -37,10 +41,10 @@ kidTemplate = function (kidName, goalId, score, target, reward) {
                     <div class="subtitle">How much points to add?</div>
                     
                     <ul>
-                        <li data-value="1" onclick="updateIncrement('${kidName}', 1)" class="first">1</li>
-                        <li data-value="2" onclick="updateIncrement('${kidName}', 2)">2</li>
-                        <li data-value="5" onclick="updateIncrement('${kidName}', 5)">5</li>
-                        <li data-value="10" onclick="updateIncrement('${kidName}', 10)" class="last">10</li>
+                        <li data-value="1" onclick="updateIncrement('${goalId}', 1)" class="first">1</li>
+                        <li data-value="2" onclick="updateIncrement('${goalId}', 2)">2</li>
+                        <li data-value="5" onclick="updateIncrement('${goalId}', 5)">5</li>
+                        <li data-value="10" onclick="updateIncrement('${goalId}', 10)" class="last">10</li>
                     </ul>
                 </div>
             </div>
@@ -118,7 +122,12 @@ fetchData("members/5e8ae9005053da750001c1a2",
 
 //update score
 function updateScore(goal_id) {
-    var inc = $(".Anna .select_increment li.active").data("value");
+    
+    var inc = $(`.kid[data-goal="${goal_id}"] .select_increment li.active`).data("value");
+
+    //show the overlay
+    $(`.kid[data-goal="${goal_id}"] .overlay`).css("visibility", "visible");
+    
     var jsondata = {"$inc": {"score": inc}}
     var settings = {
         "async": true,
@@ -135,8 +144,10 @@ function updateScore(goal_id) {
     }
 
     $.ajax(settings).done(function (response) {
-        console.log(response);
-        
+        console.log(response.score);
+        $(`.kid[data-goal="${goal_id}"] .score`).text(response.score);
+        //hide the overlay
+        $(`.kid[data-goal="${goal_id}"] .overlay`).css("visibility", "hidden");
     });
 }
 

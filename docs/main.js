@@ -13,13 +13,15 @@ function updateIncrement(element, inc) {
         $(".kid[data-kid=" + element + "] li[data-value=" + inc + "]").addClass("active");
     };
 
+
+
 // get increment from toggle selector
 //document.querySelector('input[name="inc"]:checked').value
 
 
 kidTemplate = function (kidName, goalId, score, target, reward) {
     return `
-        <div class="kid ${kidName}" data-kid="${kidName}">
+        <div class="kid ${kidName}" data-kid="${kidName}" data-goal="${goalId}">
             <div class="main">
                 <div class="kid_name">${kidName}</div>
                 <div class="subtitle">Current score</div>
@@ -29,7 +31,7 @@ kidTemplate = function (kidName, goalId, score, target, reward) {
 
                     <div class="score">${score}</div>
 
-                    <div class="plus" onclick="updateScore('${goalId}', $('.${kidName} li.active.text()'))"></div>
+                    <div class="plus" onclick="updateScore('${goalId}')"></div>
                 </div>
                 <div class="select_increment">
                     <div class="subtitle">How much points to add?</div>
@@ -115,7 +117,8 @@ fetchData("members/5e8ae9005053da750001c1a2",
 
 
 //update score
-function updateScore(goal_id, inc) {
+function updateScore(goal_id) {
+    var inc = $(".Anna .select_increment li.active").data("value");
     var jsondata = {"$inc": {"score": inc}}
     var settings = {
         "async": true,
@@ -133,6 +136,7 @@ function updateScore(goal_id, inc) {
 
     $.ajax(settings).done(function (response) {
         console.log(response);
+        
     });
 }
 

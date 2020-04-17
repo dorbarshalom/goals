@@ -14,7 +14,6 @@ function updateIncrement(element, inc) {
     };
 
 
-
 // get increment from toggle selector
 //document.querySelector('input[name="inc"]:checked').value
 
@@ -31,11 +30,11 @@ kidTemplate = function (kidName, goalId, score, target, reward) {
                 <div class="subtitle">Current score</div>
                 <div class="change_score">
 
-                    <div class="minus" data-goalid="${goalId}" onclick="updateScore(-1, 'rotem', 'mobile')"></div>
+                    <div class="minus" onclick="updateScore('${goalId}',-1)"></div>
 
                     <div class="score">${score}</div>
 
-                    <div class="plus" onclick="updateScore('${goalId}')"></div>
+                    <div class="plus" onclick="updateScore('${goalId}',1)"></div>
                 </div>
                 <div class="select_increment">
                     <div class="subtitle">How much points to add?</div>
@@ -59,6 +58,7 @@ kidTemplate = function (kidName, goalId, score, target, reward) {
                 </div>
             </div>
         </div>
+        <script>updateIncrement('${goalId}', 1);</script>
     `
 }
 
@@ -108,7 +108,6 @@ fetchData("members/5e8ae9005053da750001c1a2",
                         "isActive": true
                     }),
                     function (goals) {
-
                         var i = 0;
                         for (i = 0; i < goals.length; i++) {
                             $("#main").append(kidTemplate(goals[i].member[0].name, goals[i]._id, goals[i].score, goals[i].target, goals[i].reward));
@@ -121,18 +120,20 @@ fetchData("members/5e8ae9005053da750001c1a2",
 
 
 //update score
-function updateScore(goal_id) {
+function updateScore(goalId,updown) {
     
-    var inc = $(`.kid[data-goal="${goal_id}"] .select_increment li.active`).data("value");
+    var inc = $(`.kid[data-goal="${goalId}"] .select_increment li.active`).data("value");
+    inc = inc*updown;
+    console.log(inc);
 
     //show the overlay
-    $(`.kid[data-goal="${goal_id}"] .overlay`).css("visibility", "visible");
+    $(`.kid[data-goal="${goalId}"] .overlay`).css({"visibility":"visible","opacity":"0.7"});
     
     var jsondata = {"$inc": {"score": inc}}
     var settings = {
         "async": true,
         "crossDomain": true,
-        "url": "https://goals-d78c.restdb.io/rest/goals/" + goal_id,
+        "url": "https://goals-d78c.restdb.io/rest/goals/" + goalId,
         "method": "PUT",
         "headers": {
             "content-type": "application/json",
@@ -145,9 +146,9 @@ function updateScore(goal_id) {
 
     $.ajax(settings).done(function (response) {
         console.log(response.score);
-        $(`.kid[data-goal="${goal_id}"] .score`).text(response.score);
+        $(`.kid[data-goal="${goalId}"] .score`).text(response.score);
         //hide the overlay
-        $(`.kid[data-goal="${goal_id}"] .overlay`).css("visibility", "hidden");
+        $(`.kid[data-goal="${goalId}"] .overlay`).css({"visibility":"hidden","opacity":"0"});
     });
 }
 

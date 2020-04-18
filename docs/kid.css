@@ -1,0 +1,75 @@
+body {
+            font-family: 'Montserrat', sans-serif;
+            background: linear-gradient(45deg, #FC466B 0%, #3F5EFB 100%);
+            color: #FFFFFF;
+            margin: 0;
+            width: 100vw;
+            height: 100vh;
+            position: relative;
+        }
+
+        html,
+        body {
+            overflow-x: hidden;
+        }
+
+        #main {
+            color: #ffffff;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+        }
+
+        #name {
+            font-size: 18px;
+            font-weight: 400;
+        }
+
+        #score {
+            font-size: 120px;
+            font-weight: 900;
+            line-height: 100%;
+        }
+
+        #target {
+            font-size: 32px;
+            float: right;
+            clear: both;
+        }
+
+        #goal {
+            text-align: left;
+            position: absolute;
+            bottom: 30px;
+            left: 30px;
+        }
+
+        #goal span {
+            font-size: 18px;
+            font-weight: 400;
+        }
+
+        #goal div {
+            clear: both;
+            font-size: 32px;
+            font-weight: 900;
+            width: 70%;
+        }
+
+        #progress {
+            width: 90%;
+            margin: 0 auto;
+            margin-top: 20px;
+            height: 16px;
+            border-radius: 999px;
+            background: rgba(255, 255, 255, 0.15);
+        }
+
+        #achieved {
+            position: absolute;
+            width: 60%;
+            background: rgba(255, 255, 255, 0.8);
+            border-radius: 99px 0 0 99px;
+        }

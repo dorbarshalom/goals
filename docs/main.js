@@ -151,4 +151,3 @@ function updateScore(goalId,updown) {
         $(`.kid[data-goal="${goalId}"] .overlay`).css({"visibility":"hidden","opacity":"0"});
     });
 }
-

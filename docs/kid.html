@@ -1,0 +1,54 @@
+<!doctype html>
+
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+
+    <title>set your kids goals</title>
+    <link href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" rel="stylesheet">
+    <meta name="description" content="champ">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="styles.css">
+
+</head>
+
+<body>
+    <div class="wrapper">
+
+        <div id="goal">
+            <span>Goal:</span>
+            <div></div>
+        </div>
+
+        <div id="main">
+            <div id="score" id="rotem"></div>
+            <div id="target"></div>
+        </div>
+
+        <div id="progress">
+            <!--<div id="achieved"></div>-->
+        </div>
+
+
+        <div id="name"></div>
+
+    </div>
+    
+    <script src="https://code.jquery.com/jquery-2.2.3.min.js"></script>
+    <script src="https://goals-d78c.restdb.io/assets/js/eventsource.min.js"></script>
+    <script src="https://goals-d78c.restdb.io/rest/_jsapi.js"></script>
+    <script type="text/javascript" src="kid.js"></script>
+</body>
+
+<script>
+    // set the proper height for the progress bar
+    // First we get the viewport height and we multiple it by 1% to get a value for a vh unit
+    let vh = window.innerHeight * 0.01;
+    // Then we set the value in the --vh custom property to the root of the document
+    document.documentElement.style.setProperty('--vh', `${vh}px`);
+    
+    fetchGoal("5e91dc7b5053da7500023e61");
+</script>
+
+</html>
